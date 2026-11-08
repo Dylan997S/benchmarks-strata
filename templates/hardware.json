@@ -1,0 +1,13 @@
+{
+  "hardware_id": "replace-with-stable-public-id",
+  "recorded_date": null,
+  "gpu_model": null,
+  "gpu_count": null,
+  "gpu_memory_gb_each": null,
+  "cpu": null,
+  "host_ram_gib_approx": null,
+  "numa_domains": null,
+  "pcie_topology": null,
+  "configured_power_cap_w_per_gpu": null,
+  "notes": []
+}

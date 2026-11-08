@@ -1,0 +1,16 @@
+{
+  "hardware_id": "r9700-4gpu-epyc7452",
+  "recorded_date": "2026-11-08",
+  "gpus": "4 x R9700, 32 GB each",
+  "cpu": "AMD EPYC 7452, 32 cores / 64 threads",
+  "host_ram_gib_approx": 252,
+  "numa_domains": 4,
+  "configured_power_cap_w_per_gpu": 250,
+  "gpu_count": 4,
+  "gpu_memory_gb_each": 32,
+  "pcie_topology": null,
+  "notes": [
+    "Power caps are configured values, not calibrated wall-power measurements.",
+    "Engine-specific settings are preserved in each experiment configuration."
+  ]
+}
