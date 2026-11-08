@@ -12,6 +12,12 @@ Measured on **8 November 2026**. Same host, same saved prompts, 1,024 output tok
 
 **Scope:** this compares two serving configurations and different weight quantizations of Qwen3.8-Flash-Next. It is not a quality-equivalence claim, an upstream-certified benchmark, or an exhaustive tuning search. Strata has **eight active lanes** here; its sixteen-client result includes queueing. Short input is approximately 112–113 tokens. Effective prefill means uncached prompt tokens divided by API time to first content, not a kernel-only metric.
 
+## Radiance four-GPU performance snapshot
+
+![Four R9700 GPUs running Qwen3.8-Flash-Next with Radiance: single-client decode, 16-client throughput, effective cold prefill and long-context results](assets/r9700-qwen38-radiance-numbers.png)
+
+[Download the full-resolution numbers graphic](assets/r9700-qwen38-radiance-numbers.png). This graphic summarizes Radiance's 185 formal requests; the full comparison below covers 370 requests across both engines.
+
 ![Headline results](assets/x-comparison.png)
 
 ## Hardware and weights
