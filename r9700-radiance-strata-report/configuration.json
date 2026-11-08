@@ -1,0 +1,57 @@
+{
+  "hardware": {
+    "gpus": "4 x R9700, 32 GB each",
+    "cpu": "AMD EPYC 7452, 32 cores / 64 threads",
+    "host_ram_gib_approx": 252,
+    "numa_domains": 4,
+    "configured_power_cap_w_per_gpu": 250
+  },
+  "common": {
+    "model_family": "Qwen3.8-Flash-Next",
+    "max_context_tokens": 262144,
+    "output_cap_tokens": 1024,
+    "temperature": 0,
+    "reasoning_effort": "none"
+  },
+  "radiance": {
+    "version": "1.15.1",
+    "revision": "203064b4877f",
+    "weights": "flash.rad",
+    "weight_bytes": 121969901568,
+    "tensor_parallel": 4,
+    "tp_wire": "exact",
+    "p2p": "on",
+    "placement": "all_vram",
+    "ngram_placement": "ram",
+    "max_num_seqs": 16,
+    "kv_cache_dtype": "fp8",
+    "num_speculative_tokens": 3,
+    "draft_coupling": "off",
+    "max_num_batched_tokens": 2048,
+    "gpu_headroom_mib": 256,
+    "host_headroom_mib": 32768,
+    "kv_pool_total_tokens": 1687360
+  },
+  "strata": {
+    "engine_version": "0.1.58",
+    "build_variant": "linux-x86_64-hip-rx9070",
+    "build_source": "f-amd-vision 7be42963e6be",
+    "weights": "Qwen3.8-Flash-Next-UD-Q4_K_XL (four GGUF shards)",
+    "parallel_lanes": 8,
+    "kv_dtype": "int8",
+    "mtp_tokens": 6,
+    "lookup": 15,
+    "conversation_cache_mib": 4096,
+    "vision_enabled": true,
+    "vision_max_tokens": 1024,
+    "embedding_tables_in_host_ram": true,
+    "environment": {
+      "FNX_ARENA": "0",
+      "FNX_EXPERT_RAM_GIB": "off",
+      "FNX_PEER": "0",
+      "FNX_SELFTEST": "1",
+      "FNX_BATCH_STATS": "1"
+    },
+    "kv_pool_free_tokens_at_startup": 416256
+  }
+}
