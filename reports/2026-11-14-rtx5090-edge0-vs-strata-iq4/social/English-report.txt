@@ -1,0 +1,46 @@
+EDGE0-145B-NVFP4 — LOCAL FIELD REPORT
+14 November 2026
+
+Edge0-145B-NVFP4 is a 145B sparse MoE model that runs locally on one consumer GPU with system-memory offload.
+
+TEST SETUP
+RTX 5090 32 GB, Ryzen 7 9800X3D, 128 GB RAM, Windows 11.
+Compared with Qwen3.8 Flash Next UD-IQ4_XS-v31 on the original Strata runtime.
+Edge0 used Q8 D/U projections, INT8 KV, MTP and asynchronous expert-cache updates.
+Both deployments used a 32K context. The runtime configurations differed.
+
+CODE SPEED
+The same two code prompts were run twice per model, one request at a time, with thinking disabled and 1,024 output tokens.
+Qwen v3.1 averaged 151.5 tokens/s. Optimized Edge0 averaged 104.7 tokens/s.
+Edge0 was 30.9% slower. Rates are measured from the client stream.
+
+QUALITY
+20 synthetic tasks were run twice per model with thinking enabled.
+Code and Chinese reasoning had a 1,536-token thinking budget. Tool turns had a 768-token thinking budget.
+Each response had a 6,144-token output limit.
+
+                              Edge0        Qwen v3.1
+Complex code                  7/12         9/12
+Chinese reasoning             16/16        16/16
+Multi-turn simulated tools    12/12        12/12
+Total                         35/40        37/40
+Model-request time            603s          467s
+
+Edge0 took 29.2% longer across the quality suite. Times exclude model loading and grading.
+The code tasks used 216 hidden normal and edge-case checks across six functions.
+Tool tasks checked record reads, revisions, mutations and final receipts in a controlled simulation.
+Both models reached full scores on the Chinese and tool tasks, limiting the distinction those tasks can establish.
+The two rounds are repeated attempts at 20 tasks.
+
+MY VERDICT
+I am not recommending Edge0 yet, and I will keep watching future updates.
+For this class, Qwen3.8 Flash Next UD-IQ4_XS-v31 remains my top pick for speed and quality.
+This preference is supported by these two local setups and this task suite.
+
+SOURCES
+Local raw speed data
+../data/speed-details.json
+Local raw quality data
+../data/quality-details.json
+Official model
+https://huggingface.co/Edge0/Edge0-145B-NVFP4

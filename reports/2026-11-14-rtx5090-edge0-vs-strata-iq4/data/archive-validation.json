@@ -1,0 +1,17 @@
+{
+  "json_files_parsed": 9,
+  "python_files_parsed": 9,
+  "local_links_checked": 75,
+  "quality_code_outputs_regraded": 24,
+  "grading_changes": 0,
+  "pngs_verified": 4,
+  "png_dimensions": [
+    1440,
+    1800
+  ],
+  "speed_request_rows": 98,
+  "quality_task_rows": 80,
+  "quality_request_rows": 160,
+  "numeric_summaries_recomputed": true,
+  "validation_scope": "Offline archive validation; no model requests or service changes."
+}

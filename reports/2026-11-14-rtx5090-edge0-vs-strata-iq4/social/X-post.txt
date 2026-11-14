@@ -1,0 +1,1 @@
+Edge0-145B-NVFP4 is a 145B MoE for local GPU+RAM inference. My RTX 5090 tests favored Qwen3.8 Flash Next UD-IQ4_XS-v31, with 151.5 vs 104.7 tok/s and 37/40 vs 35/40. I'm not recommending Edge0 yet. Watching updates. v3.1 is my pick for speed and quality.

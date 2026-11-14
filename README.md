@@ -8,9 +8,10 @@
 
 | 日期 | 硬件 | 模型与引擎 | 测试范围 | 报告 |
 |---|---|---|---|---|
+| 2026-11-14 | RTX 5090 32 GB / Ryzen 7 9800X3D | Edge0-145B-NVFP4 vs Strata IQ4_XS-v31 | 同题速度、13 项调优、80 次质量尝试 | [中文](reports/2026-11-14-rtx5090-edge0-vs-strata-iq4/README.zh-CN.md) · [English](reports/2026-11-14-rtx5090-edge0-vs-strata-iq4/README.md) |
 | 2026-11-08 | 4 × R9700 32 GB / EPYC 7452 | Qwen3.8-Flash-Next；Radiance 1.15.1 vs Strata 0.1.58 UD-Q4_K_XL | 短输入至 240K；1 / 8 / 16 客户端，覆盖范围见报告 | [中文](reports/2026-11-08-r9700-radiance-vs-strata/README.zh-CN.md) · [English](reports/2026-11-08-r9700-radiance-vs-strata/README.md) |
 
-这次短输入单路生成速度为 **217.0 vs 139.3 tok/s**，16 客户端总吞吐为 **1094.1 vs 329.7 tok/s**；16K 冷输入有效 prefill 为 **7786.6 vs 2776.7 tok/s**。两套量化不同，Strata 使用 8 个活动槽，16 客户端结果包含排队。速度结果不代表质量等同，也不代表所有输入长度都测了 16 路。
+2026-11-08 的 R9700 测试中，短输入单路生成速度为 **217.0 vs 139.3 tok/s**，16 客户端总吞吐为 **1094.1 vs 329.7 tok/s**；16K 冷输入有效 prefill 为 **7786.6 vs 2776.7 tok/s**。两套量化不同，Strata 使用 8 个活动槽，16 客户端结果包含排队。速度结果不代表质量等同，也不代表所有输入长度都测了 16 路。
 
 ## 目录
 

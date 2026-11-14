@@ -1,0 +1,18 @@
+{
+  "hardware_id": "rtx5090-9800x3d-128gb",
+  "recorded_date": "2026-11-14",
+  "gpu_model": "NVIDIA GeForce RTX 5090",
+  "gpu_count": 1,
+  "gpu_memory_gb_each": 32,
+  "cpu": "AMD Ryzen 7 9800X3D, 8 cores / 16 threads",
+  "host_ram_gib_approx": 125.4,
+  "numa_domains": null,
+  "pcie_topology": null,
+  "configured_power_cap_w_per_gpu": 600,
+  "notes": [
+    "128 GB installed RAM; OS reported 128421 MiB usable.",
+    "Windows 11 Pro 25H2 build 26200.9974; NVIDIA driver 616.92.",
+    "BIWIN X570 PRO 4TB NVMe storage.",
+    "600 W configured GPU power limit observed; energy efficiency was not measured."
+  ]
+}

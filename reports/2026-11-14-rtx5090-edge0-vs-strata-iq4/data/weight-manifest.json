@@ -1,0 +1,219 @@
+{
+  "edge0_revision": "cf9b3679e7da201a658a694e1730607193f2b032",
+  "edge0_bytes": 112854101214,
+  "edge0_verification": "Every LFS file SHA-256 and every regular Git blob SHA-1 matched the pinned Hugging Face manifest.",
+  "edge0_files": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "1cc54ab9000941a5a5963dc7f464a5de49dccf02",
+      "size": 1738
+    },
+    {
+      "rfilename": "LICENSE",
+      "blobId": "f50456e6f6e0bfc93391fa15ed2cbac738576949",
+      "size": 13059
+    },
+    {
+      "rfilename": "NOTICE",
+      "blobId": "c7fbc6a45c4089720e5046eea3a7fefa8672641a",
+      "size": 2560
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "2ae8bbd5cd4b3d910b389d8ba2f60cf27d03055d",
+      "size": 36104
+    },
+    {
+      "rfilename": "dense.bin",
+      "blobId": "d5dd767013da92defc497c3d91b8c5c236163823",
+      "size": 1538625024,
+      "lfs": {
+        "sha256": "f9bcc7f36eac4e59a7b1cb1962e038ba12dc831a41fb193761f1d1e72657fb62",
+        "size": 1538625024,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "experts.bin",
+      "blobId": "b6b2c64d2fce989faa713a7d1720254d46b4291e",
+      "size": 47563800576,
+      "lfs": {
+        "sha256": "a39b0c127983b85d07326c8bad49260d6b475293b46e4166428c91a765ee593a",
+        "size": 47563800576,
+        "pointerSize": 136
+      }
+    },
+    {
+      "rfilename": "index.txt",
+      "blobId": "0655503f0a2335d97dc46e86502ab51dc3600c7c",
+      "size": 117464
+    },
+    {
+      "rfilename": "labels.bin",
+      "blobId": "d827d5600d2bd3fe5fdb13e3736c77b20a984860",
+      "size": 98304,
+      "lfs": {
+        "sha256": "ce9b4a20b92c5c866e65d84a3884c104986522471cf11cc5f797a153affbcc06",
+        "size": 98304,
+        "pointerSize": 130
+      }
+    },
+    {
+      "rfilename": "latent_dense_q4.bin",
+      "blobId": "50252198c98b8c12a8db5d5273e29aa1385ced87",
+      "size": 1981808640,
+      "lfs": {
+        "sha256": "e31e11f36c7e5a23c82550b524fd44fb28cfa821ef59fd688b8d2339137ab287",
+        "size": 1981808640,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "latent_dense_q8.bin",
+      "blobId": "dbc32e582141e1b4d6c2ac9ff0c1e8c453f11aff",
+      "size": 3743416320,
+      "lfs": {
+        "sha256": "fbb25caaa0dcf45ef62f1a4945dcf98a53a166934a3b461b166fbafa831d87ca",
+        "size": 3743416320,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-skeleton.gguf",
+      "blobId": "a94d105ceb92f4168e6c53ecab647c019e420e18",
+      "size": 5991569248,
+      "lfs": {
+        "sha256": "ab49fbe7590cdcda45d7a2bcae4be0bd42c6a70b951d594a00eb158d7df0b72f",
+        "size": 5991569248,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model.json",
+      "blobId": "24ec15b5c6d5056460ade593c939beacc15940b1",
+      "size": 1532
+    },
+    {
+      "rfilename": "mtp/dense.bin",
+      "blobId": "952dda56c20bfed823682d8dc1a6d3553b5a35b3",
+      "size": 116099072,
+      "lfs": {
+        "sha256": "c724dc0b0822ada5d2977bf5bde821605feabaa64ea2e0045b67ca656329070a",
+        "size": 116099072,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "mtp/dense.txt",
+      "blobId": "e726e275f346dfc00e2504bba2696273e881fe99",
+      "size": 1851
+    },
+    {
+      "rfilename": "mtp/draft_vocab.bin",
+      "blobId": "31f761b32b7fa903266ddf878caea6afd36506d9",
+      "size": 425196,
+      "lfs": {
+        "sha256": "b1e1d3a7a9e4bf862dcd5923ce661fb59bbd07907e594df5cf86a62ac235cb91",
+        "size": 425196,
+        "pointerSize": 131
+      }
+    },
+    {
+      "rfilename": "mtp/experts.bin",
+      "blobId": "7804acaa65ac699ebd4199a136f865ffd4d7e9d6",
+      "size": 707788800,
+      "lfs": {
+        "sha256": "09398406be61f1f54c93861f449e48b8df0bfccbc9ec9b2b7636775a6ea9244f",
+        "size": 707788800,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "native_experts.txt",
+      "blobId": "15fd4c1df4348b3a8d31e740f7fb1f5b0f1ff463",
+      "size": 1437
+    },
+    {
+      "rfilename": "ple-fp8.gguf",
+      "blobId": "565ff2e0f85b6a1f7b0a4e3c204f20a0a65bb166",
+      "size": 51200246112,
+      "lfs": {
+        "sha256": "c7615c59b060277ddf6f84729fa8f7469cfc82c7fb983d6e7eab5a2f7446f170",
+        "size": 51200246112,
+        "pointerSize": 136
+      }
+    },
+    {
+      "rfilename": "profile.bin",
+      "blobId": "f10c8f65fc2dd2e6ca80131a4e1c0b657d1a7974",
+      "size": 196632,
+      "lfs": {
+        "sha256": "543f8a364c8dbfef909ecd1a1d7adbc177d3db18ceecdca1fc568f3eaeb8c655",
+        "size": 196632,
+        "pointerSize": 131
+      }
+    },
+    {
+      "rfilename": "release-scope.json",
+      "blobId": "172b5b80ef1bc3ca7122d22eab5fe8f88de31261",
+      "size": 2536
+    },
+    {
+      "rfilename": "start.sh",
+      "blobId": "f269f18ee0141fd30792f5e74ac743e2d9dec8bb",
+      "size": 1058
+    },
+    {
+      "rfilename": "third-party/Qwen-LICENSE.txt",
+      "blobId": "9557a8961782792814714b7488346732c043793d",
+      "size": 3235
+    },
+    {
+      "rfilename": "tokenizer/chat_template.jinja",
+      "blobId": "c0c686f9c38d70d179fb7b5f5aa7530bc913dda3",
+      "size": 8952
+    },
+    {
+      "rfilename": "tokenizer/merges.txt",
+      "blobId": "8a3e6bda772e39bf37ee230954da5fd472ad2e01",
+      "size": 3353258
+    },
+    {
+      "rfilename": "tokenizer/token_type.json",
+      "blobId": "135db3207db449b0be0704e7a6c86cf35dbca36a",
+      "size": 744960
+    },
+    {
+      "rfilename": "tokenizer/tokenizer.json",
+      "blobId": "911836323abf8b7022c6e97ade2dcdf0c86e0410",
+      "size": 541
+    },
+    {
+      "rfilename": "tokenizer/vocab.json",
+      "blobId": "5104e655af5680f9c7b56da25c71eccb4e860a6a",
+      "size": 5737005
+    }
+  ],
+  "strata_iq4_files": {
+    "Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00004.gguf": {
+      "bytes": 10946618,
+      "sha256": "93ff23a08e5cd7501f24fa16f5b415d5807d0175e04edd3ed6a7a41b601a4eef",
+      "ok": true
+    },
+    "Qwen3.8-Flash-Next-UD-IQ4_XS-00002-of-00004.gguf": {
+      "bytes": 49604491008,
+      "sha256": "13d5dc8b93d039e4cfade5a9af7037f10c97f7ec4e53f75bd2e9ae34aae54aeb",
+      "ok": true
+    },
+    "Qwen3.8-Flash-Next-UD-IQ4_XS-00003-of-00004.gguf": {
+      "bytes": 15256783680,
+      "sha256": "f6b9b5934908a2043732269dd740155d0f921d0763a1dcdd3452246311651f87",
+      "ok": true
+    },
+    "Qwen3.8-Flash-Next-UD-IQ4_XS-00004-of-00004.gguf": {
+      "bytes": 28800138432,
+      "sha256": "5de8b5dbf89409acc39468decafd4a4a95b13c29d88a14b0356107897829ec36",
+      "ok": true
+    }
+  }
+}

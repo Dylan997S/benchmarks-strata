@@ -4,6 +4,7 @@
 
 | Hardware ID | GPUs | CPU | Host memory | Published experiments |
 |---|---|---|---|---|
+| [rtx5090-9800x3d-128gb](rtx5090-9800x3d-128gb.json) | 1 × RTX 5090, 32 GB | AMD Ryzen 7 9800X3D, 8 cores / 16 threads | 128 GB installed, approximately 125.4 GiB usable | [2026-11-14](../reports/2026-11-14-rtx5090-edge0-vs-strata-iq4/README.md) |
 | [r9700-4gpu-epyc7452](r9700-4gpu-epyc7452.json) | 4 × R9700, 32 GB each | AMD EPYC 7452, 32 cores / 64 threads | Approximately 252 GiB | [2026-11-08](../reports/2026-11-08-r9700-radiance-vs-strata/README.md) |
 
 硬件编号不使用主机名、IP 或账户名。仅登记已有实测配置；新机器可使用不同 GPU、CPU、显存容量或卡数。明显改变硬件组合时使用新编号，并保留旧实验快照。

@@ -1,0 +1,335 @@
+{
+  "source_commit": "f833336e487f61848ab5d49b2e7d06678812ea8a",
+  "model_revision": "cf9b3679e7da201a658a694e1730607193f2b032",
+  "download_bytes": 112854101214,
+  "first_ready_s": 27.197,
+  "restart_ready_s": 17.761,
+  "memory_summary": {
+    "gpu_peak_mib": 29343,
+    "gpu_free_min_mib": 2845,
+    "system_available_min_mib": 69027,
+    "engine_rss_peak_mib": 38492,
+    "engine_private_peak_mib": 69216
+  },
+  "initial_validation_cases": {
+    "chinese": {
+      "reply": "1. 请提前发送清晰且具体的议程，确保每位参会者都明确讨论目标并做好准备。\n2. 严格设定会议时长并准时结束，避免无目的的闲聊或偏离主题的讨论。\n3. 优先采用异步沟通方式处理简单信息同步，仅将需要实时决策和协作的问题留到会议上解决。",
+      "usage": {
+        "prompt_tokens": 29,
+        "completion_tokens": 71,
+        "total_tokens": 100,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 29,
+        "prompt_ms": 528.8,
+        "prompt_per_token_ms": 18.234,
+        "prompt_per_second": 54.8,
+        "predicted_n": 71,
+        "predicted_ms": 1636.1,
+        "predicted_per_token_ms": 23.044,
+        "predicted_per_second": 43.4,
+        "draft_n": 60,
+        "draft_n_accepted": 27
+      },
+      "total_s": 2.186,
+      "first_content_s": 0.581
+    },
+    "code": {
+      "reply": "```python\ndef moving_average(values: list[float], window: int) -> list[float]:\n    \"\"\"Return the moving average of each complete window of given size.\"\"\"\n    if window < 1:\n        raise ValueError(\"window must be at least 1\")\n    n = len(values)\n    if window > n:\n        return []\n    result = []\n    window_sum = sum(values[:window])\n    result.append(window_sum / window)\n    for i in range(window, n):\n        window_sum += values[i] - values[i - window]\n        result.append(window_sum / window)\n    return result\n```",
+      "usage": {
+        "prompt_tokens": 64,
+        "completion_tokens": 137,
+        "total_tokens": 201,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 64,
+        "prompt_ms": 748.9,
+        "prompt_per_token_ms": 11.702,
+        "prompt_per_second": 85.5,
+        "predicted_n": 137,
+        "predicted_ms": 2182.1,
+        "predicted_per_token_ms": 15.928,
+        "predicted_per_second": 62.8,
+        "draft_n": 114,
+        "draft_n_accepted": 99
+      },
+      "total_s": 3.012,
+      "first_content_s": 0.793,
+      "syntax_ok": true
+    },
+    "multi_turn_1": {
+      "reply": "记下了",
+      "usage": {
+        "prompt_tokens": 37,
+        "completion_tokens": 3,
+        "total_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 37,
+        "prompt_ms": 413.5,
+        "prompt_per_token_ms": 11.176,
+        "prompt_per_second": 89.5,
+        "predicted_n": 3,
+        "predicted_ms": 82.3,
+        "predicted_per_token_ms": 27.433,
+        "predicted_per_second": 36.5,
+        "draft_n": 3,
+        "draft_n_accepted": 3
+      },
+      "total_s": 0.513,
+      "first_content_s": 0.444
+    },
+    "multi_turn_2": {
+      "reply": "青柠 / MINT-428",
+      "usage": {
+        "prompt_tokens": 64,
+        "completion_tokens": 10,
+        "total_tokens": 74,
+        "prompt_tokens_details": {
+          "cached_tokens": 41
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 41,
+        "prompt_n": 23,
+        "prompt_ms": 196.1,
+        "prompt_per_token_ms": 8.526,
+        "prompt_per_second": 117.3,
+        "predicted_n": 10,
+        "predicted_ms": 191.7,
+        "predicted_per_token_ms": 19.17,
+        "predicted_per_second": 52.2,
+        "draft_n": 9,
+        "draft_n_accepted": 7
+      },
+      "total_s": 0.471,
+      "first_content_s": 0.244,
+      "recall_ok": true
+    },
+    "long": {
+      "reply": "Record 0593, value 1786",
+      "usage": {
+        "prompt_tokens": 30476,
+        "completion_tokens": 14,
+        "total_tokens": 30490,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 30476,
+        "prompt_ms": 14278.2,
+        "prompt_per_token_ms": 0.469,
+        "prompt_per_second": 2134.4,
+        "predicted_n": 14,
+        "predicted_ms": 251.6,
+        "predicted_per_token_ms": 17.971,
+        "predicted_per_second": 55.6,
+        "draft_n": 12,
+        "draft_n_accepted": 12
+      },
+      "total_s": 14.707,
+      "first_content_s": 14.46,
+      "recall_ok": true
+    }
+  },
+  "generated_code_assertions": {
+    "exit_code": 0,
+    "cases": 4
+  },
+  "nonstream_response": {
+    "id": "chatcmpl-2115304bfca94f05973c04f8",
+    "object": "chat.completion",
+    "created": 1794663099,
+    "model": "edge0-145b-nvfp4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "可以，我能够正常进行本地对话。"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 22,
+      "completion_tokens": 10,
+      "total_tokens": 32,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 22,
+      "prompt_ms": 505.7,
+      "prompt_per_token_ms": 22.986,
+      "prompt_per_second": 43.5,
+      "predicted_n": 10,
+      "predicted_ms": 183.2,
+      "predicted_per_token_ms": 18.32,
+      "predicted_per_second": 54.6,
+      "draft_n": 8,
+      "draft_n_accepted": 8
+    }
+  },
+  "post_tuning_validation_cases": {
+    "chinese": {
+      "reply": "1. 请提前发送明确议程并设定严格的时间上限，确保每位参会者都能充分准备。\n2. 在会议中指定专人记录要点并控制发言节奏，避免偏离主题或重复讨论已决事项。\n3. 会后立即通过邮件或协作工具同步结论与行动项，从而减少因信息不对称导致的后续沟通需求。",
+      "usage": {
+        "prompt_tokens": 29,
+        "completion_tokens": 76,
+        "total_tokens": 105,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 29,
+        "prompt_ms": 472.9,
+        "prompt_per_token_ms": 16.307,
+        "prompt_per_second": 61.3,
+        "predicted_n": 76,
+        "predicted_ms": 1589.4,
+        "predicted_per_token_ms": 20.913,
+        "predicted_per_second": 47.8,
+        "draft_n": 50,
+        "draft_n_accepted": 27
+      },
+      "total_s": 2.08,
+      "first_content_s": 0.529
+    },
+    "code": {
+      "reply": "```python\ndef moving_average(values: list[float], window: int) -> list[float]:\n    \"\"\"Return the moving average of each complete window of given size.\"\"\"\n    if window < 1:\n        raise ValueError(\"window must be at least 1\")\n    n = len(values)\n    if window > n:\n        return []\n    result = []\n    window_sum = sum(values[:window])\n    result.append(window_sum / window)\n    for i in range(window, n):\n        window_sum += values[i] - values[i - window]\n        result.append(window_sum / window)\n    return result\n```",
+      "usage": {
+        "prompt_tokens": 64,
+        "completion_tokens": 137,
+        "total_tokens": 201,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 64,
+        "prompt_ms": 697.4,
+        "prompt_per_token_ms": 10.897,
+        "prompt_per_second": 91.8,
+        "predicted_n": 137,
+        "predicted_ms": 1554.2,
+        "predicted_per_token_ms": 11.345,
+        "predicted_per_second": 88.1,
+        "draft_n": 116,
+        "draft_n_accepted": 96
+      },
+      "total_s": 2.279,
+      "first_content_s": 0.766,
+      "syntax_ok": true
+    },
+    "multi_turn_1": {
+      "reply": "记下了",
+      "usage": {
+        "prompt_tokens": 37,
+        "completion_tokens": 3,
+        "total_tokens": 40,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 37,
+        "prompt_ms": 481.4,
+        "prompt_per_token_ms": 13.011,
+        "prompt_per_second": 76.9,
+        "predicted_n": 3,
+        "predicted_ms": 75.3,
+        "predicted_per_token_ms": 25.1,
+        "predicted_per_second": 39.8,
+        "draft_n": 3,
+        "draft_n_accepted": 3
+      },
+      "total_s": 0.602,
+      "first_content_s": 0.539
+    },
+    "multi_turn_2": {
+      "reply": "青柠 / MINT-428",
+      "usage": {
+        "prompt_tokens": 64,
+        "completion_tokens": 10,
+        "total_tokens": 74,
+        "prompt_tokens_details": {
+          "cached_tokens": 41
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 41,
+        "prompt_n": 23,
+        "prompt_ms": 235.0,
+        "prompt_per_token_ms": 10.217,
+        "prompt_per_second": 97.9,
+        "predicted_n": 10,
+        "predicted_ms": 178.4,
+        "predicted_per_token_ms": 17.84,
+        "predicted_per_second": 56.1,
+        "draft_n": 9,
+        "draft_n_accepted": 7
+      },
+      "total_s": 0.546,
+      "first_content_s": 0.384,
+      "recall_ok": true
+    },
+    "long": {
+      "reply": "Record 0593, value 1786",
+      "usage": {
+        "prompt_tokens": 30476,
+        "completion_tokens": 14,
+        "total_tokens": 30490,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finish": "stop",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 30476,
+        "prompt_ms": 14241.0,
+        "prompt_per_token_ms": 0.467,
+        "prompt_per_second": 2140.0,
+        "predicted_n": 14,
+        "predicted_ms": 230.1,
+        "predicted_per_token_ms": 16.436,
+        "predicted_per_second": 60.8,
+        "draft_n": 12,
+        "draft_n_accepted": 12
+      },
+      "total_s": 14.556,
+      "first_content_s": 14.294,
+      "recall_ok": true
+    }
+  }
+}

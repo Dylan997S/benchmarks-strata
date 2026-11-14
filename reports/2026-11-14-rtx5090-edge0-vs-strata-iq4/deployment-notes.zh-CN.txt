@@ -1,0 +1,106 @@
+归档记录，测试日期 2026-11-14。服务状态是当时观察；路径及内部地址已替换为占位符。
+
+1. AI做了什么
+
+- 在现有 RTX 5090 主机使用官方 edge0-infer → edge0-strata 原生 Windows 路径完成部署。
+- 安装目录为 ${EDGE0_ROOT}；源码目录为 ${EDGE0_ROOT}\repo；模型目录为 ${EDGE0_MODEL}。
+- 模型为 Edge0/Edge0-145B-NVFP4，固定 Hugging Face revision 为 cf9b3679e7da201a658a694e1730607193f2b032。
+- 源码固定 Git commit 为 f833336e487f61848ab5d49b2e7d06678812ea8a。两个组件均从该源码编译。
+- 实际环境为 Windows 11 Pro 25H2，build 26200.9974；AMD Ryzen 7 9800X3D，8 核 16 线程；RTX 5090 32GB；128GB 系统内存；NVMe SSD。
+- 复用 ${CUDA_ROOT} 的 CUDA Toolkit 13.4.59、NVIDIA 驱动 616.92 和 VS 2022 Build Tools。Python 环境为 ${EDGE0_ROOT}\repo\edge0-strata\.venv，Python 3.14.6，依赖按官方 requirements.txt 固定安装。
+- 本次采用原生 Windows 部署。检查时 WSL 没有安装 Linux 发行版。
+- 下载前核对完整清单。下载 27 个运行及说明文件，共 112,854,101,214 bytes（约 105.10 GiB），其中包括 Q4、Q8 投影。网页展示 assets 不参与模型运行。
+- 全部 LFS 文件通过官方 SHA-256，普通文件通过固定 revision 的 Git blob SHA-1；edge0-infer inspect 返回 ok=true。
+- 下载支持整文件及分段续传。过程中修复网络中断、分段临时文件命名冲突及启动脚本管道退出码误判。完成后清理下载临时副本和实验客户端缓存，当前 D 盘可用约 244.6 GiB。
+- 按用户授权停止空闲 Basalt，最终 Edge0 已运行，/health 返回 ok、loaded=true，监听 ${LOCAL_API}。
+- 参数为 context=32768、KV=int8、du=q8、spec=4、spec-min-p=0.5、expert-cache=auto、resident-experts、vram-reserve-mib=3072、STRATA_RESIDENT_HEADROOM_GIB=16、ple-io=direct。
+- 引擎实测 GPU 专家缓存 8893 个专家、16.03 GiB，RAM 专家副本 33.66 GiB；PLE 表按需从 SSD 读取。专家运行期无文件 blob 读取。
+- 本地运行模板仅添加 log 字段以记录 ${EDGE0_ROOT}\engine.log，官方模板备份为 ${EDGE0_ROOT}\edge0-145b.official.json。
+
+2. 值得一提的事情
+
+已实测
+
+- 首次服务启动到健康接口就绪 27.197 s；停止并重新启动后 17.761 s。均为进程启动测量，首次启动发生在下载及哈希校验后，操作系统文件缓存已热。
+- 停止脚本已验证释放 18089 端口及 Strata 子进程；修复显存检查退出码误判后已重启成功。
+- 单并发、temperature=0、reasoning_effort=none、流式 HTTP、本机回环；测试时 Basalt 处于停止状态。每个用例跑一次，以下是该次结果。
+
+  中文短对话 | 输入 29 / 输出 71 tokens | 新输入处理 54.8 tok/s | 生成 43.4 tok/s | 首字 0.581 s | 总耗时 2.186 s
+  Python 函数生成 | 输入 64 / 输出 137 tokens | 新输入处理 85.5 tok/s | 生成 62.8 tok/s | 首字 0.793 s | 总耗时 3.012 s
+  多轮第二轮 | 输入 64 / 输出 10 tokens | 新输入处理 117.3 tok/s | 生成 52.2 tok/s | 首字 0.244 s | 总耗时 0.471 s
+  长输入检索 | 输入 30476 / 输出 14 tokens | 新输入处理 2134.4 tok/s | 生成 55.6 tok/s | 首字 14.46 s | 总耗时 14.707 s
+  持续代码生成 | 输入 81 / 输出 1024 tokens | 新输入处理 70.2 tok/s | 生成 93.9 tok/s | 首字 1.231 s | 总耗时 12.103 s
+  中文长回答 | 输入 65 / 输出 886 tokens | 新输入处理 71.3 tok/s | 生成 69.9 tok/s | 首字 0.962 s | 总耗时 13.659 s
+
+- 中文短对话正常返回三条建议。
+- 137-token Python 函数经人工查看代码后执行，4 项断言通过，包含常规滑窗、窗口为 1、窗口大于输入及非法窗口。
+- 第二轮准确记住“青柠 / MINT-428”，复用了 41 个 prompt tokens。
+- 30,476-token 输入成功定位 Record 0593、value 1786，约 14.7 s 完成。
+- 持续代码生成达 1024-token 上限，finish_reason=length；这一项用于持续生成速度测量，其代码输出在上限处截断。
+- 886-token 中文长回答自然结束。持续代码与中文长回答分别为 93.9、69.9 tok/s。
+- 重启后的非流式 OpenAI 请求成功，回复“可以，我能够正常进行本地对话。”；终端 Chat-Edge0.py 入口实测成功。
+- 测试期间 GPU 总占用峰值 29343 MiB（28.66 GiB），最少剩余 2845 MiB。
+- 系统可用物理内存最少 69027 MiB（67.41 GiB）。
+- Strata 工作集峰值 38492 MiB（37.59 GiB）；进程 private/commit 峰值 69216 MiB。工作集是驻留物理内存，private/commit 与其统计口径不同。
+- 采样间隔约 0.7 s 加上 nvidia-smi 查询时间；峰值是采样峰值。
+
+验证边界
+
+- 本次验证 32K 单并发、关闭思考的中文、代码和长输入。更大上下文、并发吞吐、长时间负载及广泛模型质量尚未测量。
+- 当前保持 32K 配置供本机调用。
+
+3. 需要跟进什么
+
+- 无需。服务正在运行，可按以下方式调用。
+
+接口配置
+
+  Base URL    ${LOCAL_API}
+  Model       edge0-145b-nvfp4
+  API key     任意占位值（本机服务未启用认证）
+  Health      ${LOCAL_API}/health
+  Models      ${LOCAL_API}/models
+
+启动（PowerShell）
+
+  powershell -NoProfile -ExecutionPolicy Bypass -File ${EDGE0_ROOT}\Start-Edge0.ps1
+
+  启动后等待 /health 返回 loaded=true。该脚本发现已在运行时直接返回。
+
+停止（PowerShell）
+
+  powershell -NoProfile -ExecutionPolicy Bypass -File ${EDGE0_ROOT}\Stop-Edge0.ps1
+
+终端连续对话
+
+  ${EDGE0_ROOT}\repo\edge0-strata\.venv\Scripts\python.exe ${EDGE0_ROOT}\Chat-Edge0.py
+
+  /new 开始新对话，/quit 退出客户端。退出客户端后模型服务继续运行。
+
+Python OpenAI SDK 示例（在已安装 openai 的客户端环境执行）
+
+  from openai import OpenAI
+  client = OpenAI(base_url="${LOCAL_API}", api_key="local")
+  response = client.chat.completions.create(
+      model="edge0-145b-nvfp4",
+      messages=[{"role": "user", "content": "你好，请用中文介绍一下你能做什么。"}],
+      max_tokens=512,
+      temperature=0.7,
+      reasoning_effort="none",
+  )
+  print(response.choices[0].message.content)
+
+日志与证据
+
+  ${EDGE0_ROOT}\serve.out.log
+  ${EDGE0_ROOT}\serve.err.log
+  ${EDGE0_ROOT}\engine.log
+  ${EDGE0_ROOT}\inspect.json
+  ${EDGE0_ROOT}\hf-model.json
+  ${EDGE0_ROOT}\results
+
+官方依据
+
+  https://huggingface.co/Edge0/Edge0-145B-NVFP4
+  https://github.com/Edge0-AI/Edge0/blob/f833336e487f61848ab5d49b2e7d06678812ea8a/edge0-strata/EDGE0.md
+  https://github.com/Edge0-AI/Edge0/blob/f833336e487f61848ab5d49b2e7d06678812ea8a/edge0-infer/docs/edge0-145b.md

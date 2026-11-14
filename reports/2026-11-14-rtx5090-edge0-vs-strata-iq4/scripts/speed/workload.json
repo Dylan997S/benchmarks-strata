@@ -1,0 +1,8 @@
+{
+  "groups": {
+    "python_code": [
+      "Write a complete production-style Python module of at least 500 lines implementing an async persistent task scheduler using sqlite3 and asyncio. Include typed dataclasses, schema creation and migrations, transactions, leases, fencing tokens, configurable retries with jitter, worker coordination, cancellation, metrics, cleanup, a command-line interface, and extensive unittest tests for failures and concurrency. Use full implementations, no ellipses or TODOs. Output code directly and keep writing until all components and tests are implemented.",
+      "Write a complete Python module of at least 500 lines implementing a persistent append-only key-value store with a checksummed write-ahead log, crash recovery, compaction, tombstones, atomic batches, snapshots, thread-safe readers and writers, a command-line interface, and extensive unittest tests including corrupted and truncated logs. Include type hints and full implementations, no ellipses or TODOs. Output code directly and continue until all components and tests are implemented."
+    ]
+  }
+}

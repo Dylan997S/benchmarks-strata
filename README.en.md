@@ -6,9 +6,10 @@ Personal measurements of local LLM inference across hardware, models, quantizati
 
 | Date | Hardware | Comparison | Report |
 |---|---|---|---|
+| 2026-11-14 | RTX 5090 32 GB, Ryzen 7 9800X3D | Edge0-145B-NVFP4 vs Strata IQ4_XS-v31 | [English](reports/2026-11-14-rtx5090-edge0-vs-strata-iq4/README.md) · [中文](reports/2026-11-14-rtx5090-edge0-vs-strata-iq4/README.zh-CN.md) |
 | 2026-11-08 | 4 × R9700 32 GB, EPYC 7452 | Radiance 1.15.1 vs Strata 0.1.58 / UD-Q4_K_XL; Qwen3.8-Flash-Next | [English](reports/2026-11-08-r9700-radiance-vs-strata/README.md) · [中文](reports/2026-11-08-r9700-radiance-vs-strata/README.zh-CN.md) |
 
-Short-input single-client decode: **217.0 vs 139.3 tok/s**. Short-input 16-client total output: **1094.1 vs 329.7 tok/s**. Effective cold 16K prefill: **7786.6 vs 2776.7 tok/s**. These are different quantizations; Strata has eight active lanes, so sixteen clients include queueing. See the report for the coverage matrix and limitations.
+In the 2026-11-08 R9700 test, short-input single-client decode: **217.0 vs 139.3 tok/s**. Short-input 16-client total output: **1094.1 vs 329.7 tok/s**. Effective cold 16K prefill: **7786.6 vs 2776.7 tok/s**. These are different quantizations; Strata has eight active lanes, so sixteen clients include queueing. See the report for the coverage matrix and limitations.
 
 - `hardware/`: measured system profiles with stable IDs.
 - `reports/<date-hardware-experiment>/`: reports, configuration snapshots, sanitized CSV data and charts.

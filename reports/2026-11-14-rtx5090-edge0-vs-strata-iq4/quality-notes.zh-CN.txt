@@ -1,0 +1,52 @@
+归档记录，测试日期 2026-11-14。服务状态是当时观察；路径及内部地址已替换为占位符。
+
+1. AI做了什么
+
+- 在同一台 RTX 5090 32GB / Ryzen 7 9800X3D / 128GB RAM / Windows 11 主机上，独立端口依次测试 Edge0-145B-NVFP4 与原 Strata IQ4_XS-v31。
+- Edge0 沿用已验证的 Q8 D/U、异步专家缓存、32K 上下文、3 GiB 显存预留；Strata 沿用原 0.1.59 引擎及 IQ4_XS-v31 权重配置。
+- 固定20道题，每套模型跑两轮，共80次任务尝试。顺序为 Edge0第1轮、Strata第1轮、Strata第2轮、Edge0第2轮，每轮均重新启动，第二轮按相反题序。
+- 两边相同提示词、temperature=0、top_p=1、repetition_penalty=1、presence_penalty=0、frequency_penalty=0，seed=42和43。开启思考，每请求输出上限6144 tokens；代码与中文题思考预算1536，工具调用思考预算768。
+- 6道复杂代码题覆盖区间覆盖优先级、原子事务、零工期依赖调度、带上限的加权分配、布尔查询解析、幂等事件合并。允许标准库，提供216个正常及异常输入的隐藏验收用例。一个函数全部用例通过才计该题通过。
+- 8道中文题覆盖库存撤销去重、逻辑约束、条件概率、时区跨日、双约束最优选择、分层金额计算、修订优先级、长材料有效配置。
+- 6道多轮工具任务覆盖配置修改、分页流水汇总、发布选择、会议窗口、库存方案、日志指令干扰。工具实际操作独立的内存业务状态，由程序检查读取依赖、revision、最终状态及验证回执。这些是模拟业务工具。
+- 代码输出在有超时和纯计算约束的子进程中执行，并在全部测试后用同一最终评分器复核。
+- 测试目录为 ${QUALITY_WORK}。最终保留正式 Edge0，接口为 ${LOCAL_API}，实验端口18090已关闭。
+
+2. 值得一提的事情
+
+通过率与耗时
+
+- 复杂代码，Edge0 7/12，Strata IQ4 9/12；模型请求总耗时分别 322.1s、236.0s。
+- 中文推理，Edge0 16/16，Strata IQ4 16/16；模型请求总耗时分别 114.9s、85.4s。
+- 多轮模拟工具任务，Edge0 12/12，Strata IQ4 12/12；模型请求总耗时分别 166.1s、145.4s。
+- 合计，Edge0 35/40，Strata IQ4 37/40；模型请求总耗时分别 603.1s、466.9s。
+
+- 完成同一组40次任务尝试，Edge0累计模型请求时间比Strata 多 29.2%。
+- 耗时包括每道题的全部模型请求，工具题包含多轮调用，排除模型加载、评分器、人工阅读和两题之间的采样等待。输出与思考长度由模型决定，因此该耗时与单纯decode tok/s不同。
+- 配对结果为两边均通过34次、均失败2次、仅Edge0通过1次、仅Strata通过3次。
+- 在这组任务、推理预算和采样设置下，Edge0没有体现值得额外耗时的质量提升。
+- Edge0 空最终答复 0 次，Strata 空最终答复 1 次；达到输出长度上限分别 0、0 次。
+
+未通过任务
+
+- edge0 第1轮 code/interval_overlay，NameError: name 'u_priority' is not defined
+- edge0 第1轮 code/schedule_tasks，case 2: wrong result
+- edge0 第1轮 code/select_rows，ValueError: expected '=='
+- edge0 第2轮 code/schedule_tasks，case 2: wrong result
+- edge0 第2轮 code/interval_overlay，case 3: wrong result
+- strata-iq4 第1轮 code/interval_overlay，ValueError: Missing function interval_overlay
+- strata-iq4 第1轮 code/schedule_tasks，case 3: wrong result
+- strata-iq4 第1轮 code/reconcile_events，case 3: wrong result
+
+判断范围
+
+- 这是一组同硬件、同题、同预算的本地合成测试；20道题各重复两次，80次尝试并非80道独立题。
+- 两边均开启思考；结果适用于本次推理预算与采样设置。不能由此证明所有任务或其他推理预算的整体质量。
+- 中文题若两边满分，表示这组题的区分度有限。
+- 工具任务通过表示模拟状态、参数和流程正确，生产系统的真实工具可靠性仍需另行验证。
+- 详细配对差异、全部提示词、期望答案、代码响应和工具轨迹见随附JSON。
+
+3. 需要跟进什么
+
+- Edge0已按要求保留运行。当前模型为 edge0-145b-nvfp4，地址 ${LOCAL_API}。
+- 启动脚本 ${EDGE0_ROOT}/Start-Edge0.ps1，停止脚本 ${EDGE0_ROOT}/Stop-Edge0.ps1。
